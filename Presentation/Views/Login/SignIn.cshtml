@@ -1,0 +1,58 @@
+﻿@using DTO
+@model UserDTO
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>@ViewData["Title"] - Presentation</title>
+    <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
+</head>
+<body class="justify-content-center align-items-center bg-img ">
+
+    <div class="container py-5 h-auto">
+
+        <div class="row d-flex justify-content-center align-items-center h-100 center">
+            <div class="col-12 col-md-8 col-lg-6 col-xl-5">
+                <div class="card shadow-2-strong" style="border-radius: 1rem;">
+                    <div class="card-body p-5 text-center">
+                        <form method="post">
+                            <h3 class="mb-5">Sign In</h3>
+
+
+                            <div class="form-outline mb-4">
+                                <input type="text" placeholder="Username" class="form-control form-control-lg" name="Username" />
+                            </div>
+
+                            <div class="form-outline mb-4">
+                                <input type="password" placeholder="Password" class="form-control form-control-lg" name="Password" />
+                            </div>
+
+                            <button class="btn btn-primary btn-lg btn-block mb-4" type="submit"
+                                    asp-controller="Login" asp-action="SignIn">
+                                Login
+                            </button>
+
+                            <partial name="~/Views/Shared/Message.cshtml" />
+                            
+                            <div class="form-outline mb-4">
+                                Don't have account? <a class="form-label" asp-controller="Login"
+                                                       asp-action="SignUp">Sign Up</a>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="~/lib/jquery/dist/jquery.min.js"></script>
+    <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="~/js/site.js" asp-append-version="true"></script>
+</body>
+</html>

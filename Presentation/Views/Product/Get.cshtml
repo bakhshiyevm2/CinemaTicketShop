@@ -6,40 +6,39 @@
     {
     <div class="row justify-content-center">
 
-            <partial name="~/Views/Shared/Message.cshtml" />
+        <partial name="~/Views/Shared/Message.cshtml" />
 
-                    <div class="col-4 my-4">
-                        <img class="card-size-250" src=@Url.Content(@Model.ImgPath) alt="Card image"> <!--card-img-size-50-->
-                    </div>
+        <div class="col-4 my-4">
+            <img class="card-size-250" src=@Url.Content(@Model.ImgPath) alt="Card image"> <!--card-img-size-50-->
+        </div>
 
-                    <div class="col-4 my-4">
-                        <div class="card border-primary">
-                            <div class="card-body">
-                                <h4 class="card-title">@Model.Name</h4>
-                                <p class="card-text">Price : @Model.Price</p>
-                                <p class="card-text">Description : @Model.Note</p>
+        <div class="col-4 my-4">
+            <div class="card border-primary">
+                <div class="card-body">
+                    <h4 class="card-title">@Model.Name</h4>
+                    <p class="card-text">Price : @Model.Price</p>
+                    <p class="card-text">Description : @Model.Note</p>
 
-                                <form method="post" asp-controller="Product" asp-action="AddToCart">
+                    <form method="post" asp-controller="Product" asp-action="AddToCart">
 
-                                    <div class="form-outline mb-4">
-                                        <label>Count:  </label>
-                                        <input type="number" style="width:100px" value="1" name="Count" min="1" max="10" class="form-control form-control" />
-                                    </div>
-
-                                    <button type="submit" class="btn btn-outline-success">
-                                        <i class="fa fa-shopping-cart" aria-hidden="true"></i>
-                                        Add to Cart
-                                    </button>
-
-                                    <div class="form-outline mb-4">
-                                        <input type="hidden" name="ProductId" value="@Model.Id" class="form-control form-control" />
-                                    </div>
-
-                                </form>
-                            </div>
+                        <div class="form-outline mb-4">
+                            <label>Count:  </label>
+                            <input type="number" style="width:100px" value="1" name="Count" min="1" max="10" class="form-control form-control" />
                         </div>
-                    </div>
 
+                        <button type="submit" class="btn btn-outline-success">
+                            <i class="fa fa-shopping-cart" aria-hidden="true"></i>
+                            Add to Cart
+                        </button>
+
+                        <div class="form-outline mb-4">
+                            <input type="hidden" name="ProductId" value="@Model.Id" class="form-control form-control" />
+                        </div>
+
+                    </form>
+                </div>
+            </div>
+        </div>
     </div>
     }
 

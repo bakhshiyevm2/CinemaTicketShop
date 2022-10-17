@@ -131,5 +131,18 @@ namespace Presentation.Controllers
                 });
         }
 
+        [HttpPost]
+        public IActionResult DeleteFromCart(int cartId)
+        {
+            _productService.DeleteFromCart(cartId);
+
+            return RedirectToAction("GetCart",
+                new
+                {
+                    message = "Success! Deleted from cart!",
+                    isSuccess = true
+                });
+        }
+
     }
 }

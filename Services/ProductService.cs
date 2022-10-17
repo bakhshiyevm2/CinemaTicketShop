@@ -82,5 +82,17 @@ namespace Services
 
             return prods;
         }
+
+        public void DeleteFromCart(int cartId) 
+        {
+            var ent = _db.Carts.Find(cartId);
+
+            if (ent == null)
+                return;
+
+            _db.Carts.Remove(ent);
+
+            _db.SaveChanges();
+        }
     }
 }

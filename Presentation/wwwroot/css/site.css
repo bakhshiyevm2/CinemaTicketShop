@@ -56,6 +56,12 @@ body {
     padding: 8px 16px !important;
 }
 
+.full-page {
+    position: relative;
+    height: 90vh;
+}
+
+
 .footer {
     position: relative !important;
 }

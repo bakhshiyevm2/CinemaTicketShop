@@ -66,7 +66,7 @@ namespace Services
             //doing it in code, but need in db
             var res = Get();
 
-            if (!string.IsNullOrEmpty(search))
+            if (!string.IsNullOrEmpty(search?.Trim()))
                 res = res.Where(pr => pr.Name.ToLower().Contains(search.ToLower()));
 
             res = order switch

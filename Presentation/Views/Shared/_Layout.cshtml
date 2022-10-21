@@ -1,4 +1,5 @@
-﻿<!DOCTYPE html>
+﻿@using System.Globalization
+<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="utf-8" />
@@ -11,7 +12,7 @@
 </head>
 <body class="grad-bg">
     <header>
-        <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-dark bg-dark box-shadow mb-3">
+        <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-dark bg-dark box-shadow">
             <div class="container-fluid">
                 <a class="navbar-brand" asp-area="" asp-controller="Home" asp-action="Index">Presentation</a>
                 <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target=".navbar-collapse" aria-controls="navbarSupportedContent"
@@ -30,19 +31,31 @@
                             <a class="nav-link text-light" asp-area="" asp-controller="Product" asp-action="GetCart">Cart</a>
                         </li>
                     </ul>
+                    <p class="text-light mx-3 my-1">
+                        Welcome @CultureInfo.CurrentCulture.TextInfo.ToTitleCase(Context.User.FindFirst(x=>x.Type=="Username")?.Value)
+                    </p>
+                    @{
+                        bool isAdmin = Context.User.IsInRole("Admin");                       
+                        <a style="display:@((isAdmin)? "block" :"none")" class="nav-link text-light btn btn-primary btn-p-8-16 mx-2" 
+                        asp-area="" asp-controller="Admin" asp-action="Get">Admin panel</a>
+                    }
+                    
                     <a class="nav-link text-light btn btn-danger btn-p-8-16" asp-area="" asp-controller="Login" asp-action="SignOut">Sign Out</a>
 
                 </div>
             </div>
         </nav>
     </header>
-    <div class="container">
+    <div>
+        <div class="container">
         <main role="main">
-            @RenderBody()
+                @RenderBody()
         </main>
-    </div>
+        </div>
 
-    <footer class="footer text-muted bg-dark">
+    </div>
+    
+    <footer class="footer text-muted bg-dark mt-2">
         <div class="container text-light">
             &copy; 2022 - Presentation
         </div>

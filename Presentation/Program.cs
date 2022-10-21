@@ -41,12 +41,10 @@ builder.Services.AddSession();
 builder.Services.AddAuthentication(CookieAuthenticationDefaults.AuthenticationScheme)
 	.AddCookie(opt =>
 	{
-		opt.LoginPath = "/SignIn";
+		opt.LoginPath = "/Login/SignIn";
 		opt.Cookie.HttpOnly = true;
 		opt.Cookie.Name = "AuthCookie";
 		opt.Cookie.MaxAge = TimeSpan.FromHours(1);
-
-
 
 		////for api
 		//opt.Events = new CookieAuthenticationEvents

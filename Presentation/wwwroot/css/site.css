@@ -56,21 +56,12 @@ body {
     padding: 8px 16px !important;
 }
 
-.full-page {
-    position: relative;
-    height: 90vh;
-}
 
-
-.footer {
-    position: relative !important;
-}
 
 .grad-bg {
     background: linear-gradient(-45deg, #3d1ef9, #e73c7e, #ada9a9, #23d5ab);
     background-size: 400% 400%;
     animation: gradient 15s ease infinite;
-    height: 100vh;
 }
 
 @keyframes gradient {

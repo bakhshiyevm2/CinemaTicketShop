@@ -39,32 +39,37 @@ namespace Presentation.Controllers
         }
 
         [HttpGet]
-        public IActionResult GetAll(int page = 1, int pageSize = 16, ProductSortOrder order = ProductSortOrder.NameAsc, string search = null)
+        public IActionResult GetAll(int page = 1, int pageSize = 4, ProductSortOrder order = ProductSortOrder.NameAsc, string search = null,bool changeSort = false)
         {
             if (!string.IsNullOrEmpty(search))
                 ViewBag.Search = search;
             //to save search text in input
 
+            int allProductsCount;
+            var res = _productService.GetFilter(out allProductsCount, page, pageSize, order, search);
 
-            var res = _productService.GetFilter(page, pageSize, order, search);
-
-            var allProductsCount = res.Count();
             ViewBag.HasPrevious = true;
             ViewBag.HasNext = true;
 
-            if (page * pageSize >= allProductsCount)
-            {
-                ViewBag.HasNext = false;
-            }
             if (page <= 1)
             {
                 ViewBag.HasPrevious = false;
             }
+            if (page * pageSize >= allProductsCount)
+            {
+                ViewBag.HasNext = false;
+            }
 
-
-            ViewBag.NameSort = order == ProductSortOrder.NameAsc ? ProductSortOrder.NameDesc : ProductSortOrder.NameAsc;
-            ViewBag.PriceSort = order == ProductSortOrder.PriceAsc ? ProductSortOrder.PriceDesc : ProductSortOrder.PriceAsc;
-
+            if (changeSort)
+            {
+                ViewBag.NameSort = order == ProductSortOrder.NameAsc ? ProductSortOrder.NameDesc : ProductSortOrder.NameAsc;
+                ViewBag.PriceSort = order == ProductSortOrder.PriceAsc ? ProductSortOrder.PriceDesc : ProductSortOrder.PriceAsc;
+            }
+            else
+            {
+                ViewBag.NameSort = order;
+                ViewBag.PriceSort = order;
+            }
 
             var pagedRs = new PagedResponseDTO<ProductDTO>(page, pageSize, res);
 
@@ -72,7 +77,6 @@ namespace Presentation.Controllers
         }
 
         [HttpPost]
-
         public IActionResult AddToCart(CartDTO dto)
         {
             bool isSuccess;

@@ -76,6 +76,7 @@ namespace Presentation.Controllers
             {
                 new Claim("Id", user.Id.ToString()),
                 new Claim("Username", user.Username),
+                new Claim(ClaimTypes.Role, user.RoleName),
             };
 
             ClaimsIdentity id = new ClaimsIdentity(claims, "ApplicationCookie");

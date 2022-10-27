@@ -37,7 +37,7 @@
                     @{
                         bool isAdmin = Context.User.IsInRole("Admin");                       
                         <a style="display:@((isAdmin)? "block" :"none")" class="nav-link text-light btn btn-primary btn-p-8-16 mx-2" 
-                        asp-area="" asp-controller="Admin" asp-action="Get">Admin panel</a>
+                        asp-controller="AdminProduct" asp-action="GetAll">Admin panel</a>
                     }
                     
                     <a class="nav-link text-light btn btn-danger btn-p-8-16" asp-area="" asp-controller="Login" asp-action="SignOut">Sign Out</a>

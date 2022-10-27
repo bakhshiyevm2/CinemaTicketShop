@@ -24,11 +24,16 @@ namespace Services
         public UserDTO Login(UserDTO model)
         {
 
-            var res = _db.Users.Where(x => x.Username == model.Username);
+            var res = _db.Users
+                                                    .Where(x => x.Username == model.Username)
+                                                    .Include(u=>u.Role);
 
             if (res.Count() == 1)
             {
                 var user = res.FirstOrDefault();
+
+                
+
                 var hash = Crypto.GenerateSHA256Hash(model.Password, user.Salt);
 
                 if (hash == user.PasswordHash)
@@ -51,6 +56,7 @@ namespace Services
         public override UserDTO Create(UserDTO model)
         {
             var res = _db.Users.Where(x => x.Username == model.Username);
+            model.RoleId = 2; //just User
 
             if (res.Any())
                 throw new Exception("Username exists!");

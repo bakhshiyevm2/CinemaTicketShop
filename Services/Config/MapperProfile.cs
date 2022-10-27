@@ -15,7 +15,8 @@ namespace Services.Config
         public MapperProfile()
         {
             CreateMap<UserDTO, User>();
-            CreateMap<User, UserDTO>();
+            CreateMap<User, UserDTO>()
+                .ForMember(dst => dst.RoleName, x => x.MapFrom(src => src.Role.Name));
 
             CreateMap<ProductDTO, Product>();
             CreateMap<Product, ProductDTO>();

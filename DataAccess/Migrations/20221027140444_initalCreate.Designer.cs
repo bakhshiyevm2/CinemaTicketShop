@@ -12,8 +12,8 @@ using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 namespace DataAccess.Migrations
 {
     [DbContext(typeof(AppDbContext))]
-    [Migration("20221017041551_addCart")]
-    partial class addCart
+    [Migration("20221027140444_initalCreate")]
+    partial class initalCreate
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -93,7 +93,7 @@ namespace DataAccess.Migrations
                         new
                         {
                             Id = 1,
-                            CreateDate = new DateTime(2022, 10, 17, 8, 15, 51, 592, DateTimeKind.Local).AddTicks(8188),
+                            CreateDate = new DateTime(2022, 10, 27, 18, 4, 44, 528, DateTimeKind.Local).AddTicks(4901),
                             CreateUserId = 1,
                             ImgPath = "~/img/pulp_fict.jpg",
                             Name = "Movie",
@@ -103,12 +103,90 @@ namespace DataAccess.Migrations
                         new
                         {
                             Id = 2,
-                            CreateDate = new DateTime(2022, 10, 17, 8, 15, 51, 592, DateTimeKind.Local).AddTicks(8198),
+                            CreateDate = new DateTime(2022, 10, 27, 18, 4, 44, 528, DateTimeKind.Local).AddTicks(4913),
                             CreateUserId = 1,
                             ImgPath = "~/img/pulp_fict.jpg",
                             Name = "Test",
                             Note = "Description",
                             Price = 15.0
+                        },
+                        new
+                        {
+                            Id = 3,
+                            CreateDate = new DateTime(2022, 10, 27, 18, 4, 44, 528, DateTimeKind.Local).AddTicks(4920),
+                            CreateUserId = 1,
+                            ImgPath = "~/img/pulp_fict.jpg",
+                            Name = "123123",
+                            Note = "Description",
+                            Price = 55.0
+                        },
+                        new
+                        {
+                            Id = 4,
+                            CreateDate = new DateTime(2022, 10, 27, 18, 4, 44, 528, DateTimeKind.Local).AddTicks(4928),
+                            CreateUserId = 1,
+                            ImgPath = "~/img/pulp_fict.jpg",
+                            Name = "Testmurad",
+                            Note = "Description",
+                            Price = 25.0
+                        },
+                        new
+                        {
+                            Id = 5,
+                            CreateDate = new DateTime(2022, 10, 27, 18, 4, 44, 528, DateTimeKind.Local).AddTicks(4935),
+                            CreateUserId = 1,
+                            ImgPath = "~/img/pulp_fict.jpg",
+                            Name = "MuradMovie",
+                            Note = "Description",
+                            Price = 51.0
+                        },
+                        new
+                        {
+                            Id = 6,
+                            CreateDate = new DateTime(2022, 10, 27, 18, 4, 44, 528, DateTimeKind.Local).AddTicks(4946),
+                            CreateUserId = 1,
+                            ImgPath = "~/img/pulp_fict.jpg",
+                            Name = "Test 2",
+                            Note = "Description",
+                            Price = 6.0
+                        });
+                });
+
+            modelBuilder.Entity("DataAccess.Entites.Role", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("integer");
+
+                    NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b.Property<int>("Id"));
+
+                    b.Property<DateTime>("CreateDate")
+                        .HasColumnType("timestamp without time zone");
+
+                    b.Property<int>("CreateUserId")
+                        .HasColumnType("integer");
+
+                    b.Property<string>("Name")
+                        .IsRequired()
+                        .HasColumnType("text");
+
+                    b.Property<DateTime?>("UpdateDate")
+                        .HasColumnType("timestamp without time zone");
+
+                    b.Property<int?>("UpdateUserId")
+                        .HasColumnType("integer");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("Roles");
+
+                    b.HasData(
+                        new
+                        {
+                            Id = 1,
+                            CreateDate = new DateTime(2022, 10, 27, 18, 4, 44, 528, DateTimeKind.Local).AddTicks(3678),
+                            CreateUserId = 1,
+                            Name = "Admin"
                         });
                 });
 
@@ -130,6 +208,9 @@ namespace DataAccess.Migrations
                         .IsRequired()
                         .HasColumnType("text");
 
+                    b.Property<int>("RoleId")
+                        .HasColumnType("integer");
+
                     b.Property<string>("Salt")
                         .IsRequired()
                         .HasColumnType("text");
@@ -146,16 +227,19 @@ namespace DataAccess.Migrations
 
                     b.HasKey("Id");
 
+                    b.HasIndex("RoleId");
+
                     b.ToTable("Users");
 
                     b.HasData(
                         new
                         {
                             Id = 1,
-                            CreateDate = new DateTime(2022, 10, 17, 8, 15, 51, 592, DateTimeKind.Local).AddTicks(8046),
+                            CreateDate = new DateTime(2022, 10, 27, 18, 4, 44, 528, DateTimeKind.Local).AddTicks(4878),
                             CreateUserId = 1,
-                            PasswordHash = "��+f0�O|�O[}�^�vh;M'�rߖ222EH�",
-                            Salt = "JA5T6Qg1bYqbhg==",
+                            PasswordHash = "J\"A�f)�A.8���{�-�ϧ �0������q+0",
+                            RoleId = 1,
+                            Salt = "VIxWqgyYhfdM5A==",
                             Username = "admin"
                         });
                 });
@@ -177,6 +261,17 @@ namespace DataAccess.Migrations
                     b.Navigation("Product");
 
                     b.Navigation("User");
+                });
+
+            modelBuilder.Entity("DataAccess.Entites.User", b =>
+                {
+                    b.HasOne("DataAccess.Entites.Role", "Role")
+                        .WithMany()
+                        .HasForeignKey("RoleId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Role");
                 });
 
             modelBuilder.Entity("DataAccess.Entites.Product", b =>

@@ -61,13 +61,17 @@ namespace Services
             return res;
         }
 
-        public IEnumerable<ProductDTO> GetFilter(int page = 1, int pageSize = 16, ProductSortOrder order = ProductSortOrder.NameAsc, string search = null) 
+        public IEnumerable<ProductDTO> GetFilter(out int prodCount, int page = 1, int pageSize = 4, ProductSortOrder order = ProductSortOrder.NameAsc, string search = null) 
         {
             //doing it in code, but need in db
             var res = Get();
 
+      
+
             if (!string.IsNullOrEmpty(search?.Trim()))
                 res = res.Where(pr => pr.Name.ToLower().Contains(search.ToLower()));
+
+            prodCount = res.Count();
 
             res = order switch
             {

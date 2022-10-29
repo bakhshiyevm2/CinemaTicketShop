@@ -19,6 +19,9 @@ namespace Presentation.Controllers
         [HttpGet]       
         public IActionResult SignIn()
         {
+            if (HttpContext.User.Identity.IsAuthenticated)
+                RedirectToAction("Index", "Home");
+
             return View();
         }
 

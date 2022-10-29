@@ -6,7 +6,7 @@ using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 
 namespace DataAccess.Migrations
 {
-    public partial class initalCreate : Migration
+    public partial class initialCreate : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -105,23 +105,27 @@ namespace DataAccess.Migrations
                 columns: new[] { "Id", "CreateDate", "CreateUserId", "ImgPath", "Name", "Note", "Price", "UpdateDate", "UpdateUserId" },
                 values: new object[,]
                 {
-                    { 1, new DateTime(2022, 10, 27, 18, 4, 44, 528, DateTimeKind.Local).AddTicks(4901), 1, "~/img/pulp_fict.jpg", "Movie", "Description", 5.0, null, null },
-                    { 2, new DateTime(2022, 10, 27, 18, 4, 44, 528, DateTimeKind.Local).AddTicks(4913), 1, "~/img/pulp_fict.jpg", "Test", "Description", 15.0, null, null },
-                    { 3, new DateTime(2022, 10, 27, 18, 4, 44, 528, DateTimeKind.Local).AddTicks(4920), 1, "~/img/pulp_fict.jpg", "123123", "Description", 55.0, null, null },
-                    { 4, new DateTime(2022, 10, 27, 18, 4, 44, 528, DateTimeKind.Local).AddTicks(4928), 1, "~/img/pulp_fict.jpg", "Testmurad", "Description", 25.0, null, null },
-                    { 5, new DateTime(2022, 10, 27, 18, 4, 44, 528, DateTimeKind.Local).AddTicks(4935), 1, "~/img/pulp_fict.jpg", "MuradMovie", "Description", 51.0, null, null },
-                    { 6, new DateTime(2022, 10, 27, 18, 4, 44, 528, DateTimeKind.Local).AddTicks(4946), 1, "~/img/pulp_fict.jpg", "Test 2", "Description", 6.0, null, null }
+                    { 1, new DateTime(2022, 10, 29, 20, 27, 12, 693, DateTimeKind.Local).AddTicks(4767), 1, "~/img/pulp_fict.jpg", "Movie", "Description", 5.0, null, null },
+                    { 2, new DateTime(2022, 10, 29, 20, 27, 12, 693, DateTimeKind.Local).AddTicks(4794), 1, "~/img/pulp_fict.jpg", "Test", "Description", 15.0, null, null },
+                    { 3, new DateTime(2022, 10, 29, 20, 27, 12, 693, DateTimeKind.Local).AddTicks(4807), 1, "~/img/pulp_fict.jpg", "123123", "Description", 55.0, null, null },
+                    { 4, new DateTime(2022, 10, 29, 20, 27, 12, 693, DateTimeKind.Local).AddTicks(4821), 1, "~/img/pulp_fict.jpg", "Testmurad", "Description", 25.0, null, null },
+                    { 5, new DateTime(2022, 10, 29, 20, 27, 12, 693, DateTimeKind.Local).AddTicks(4834), 1, "~/img/pulp_fict.jpg", "MuradMovie", "Description", 51.0, null, null },
+                    { 6, new DateTime(2022, 10, 29, 20, 27, 12, 693, DateTimeKind.Local).AddTicks(4855), 1, "~/img/pulp_fict.jpg", "Test 2", "Description", 6.0, null, null }
                 });
 
             migrationBuilder.InsertData(
                 table: "Roles",
                 columns: new[] { "Id", "CreateDate", "CreateUserId", "Name", "UpdateDate", "UpdateUserId" },
-                values: new object[] { 1, new DateTime(2022, 10, 27, 18, 4, 44, 528, DateTimeKind.Local).AddTicks(3678), 1, "Admin", null, null });
+                values: new object[,]
+                {
+                    { 1, new DateTime(2022, 10, 29, 20, 27, 12, 693, DateTimeKind.Local).AddTicks(3079), 1, "Admin", null, null },
+                    { 2, new DateTime(2022, 10, 29, 20, 27, 12, 693, DateTimeKind.Local).AddTicks(3163), 1, "User", null, null }
+                });
 
             migrationBuilder.InsertData(
                 table: "Users",
                 columns: new[] { "Id", "CreateDate", "CreateUserId", "PasswordHash", "RoleId", "Salt", "UpdateDate", "UpdateUserId", "Username" },
-                values: new object[] { 1, new DateTime(2022, 10, 27, 18, 4, 44, 528, DateTimeKind.Local).AddTicks(4878), 1, "J\"A�f)�A.8���{�-�ϧ �0������q+0", 1, "VIxWqgyYhfdM5A==", null, null, "admin" });
+                values: new object[] { 1, new DateTime(2022, 10, 29, 20, 27, 12, 693, DateTimeKind.Local).AddTicks(4704), 1, ">M>Aɳ֛2���^#��s�cH]�ݠ�i�", 1, "8QykOR/Z+vHGkA==", null, null, "admin" });
 
             migrationBuilder.CreateIndex(
                 name: "IX_Carts_ProductId",

@@ -23,7 +23,8 @@ namespace DataAccess
 
 		}
 
-		protected override void OnModelCreating(ModelBuilder modelBuilder)
+
+        protected override void OnModelCreating(ModelBuilder modelBuilder)
 		{
 
             modelBuilder.Entity<Role>().HasData(
@@ -33,8 +34,8 @@ namespace DataAccess
                     Name = "Admin",
                     CreateDate = DateTime.Now,
                     CreateUserId = 1
-                }
-                );
+                });
+
             modelBuilder.Entity<Role>().HasData(
                 new Role
                 {
@@ -116,16 +117,16 @@ namespace DataAccess
                     CreateUserId = 1
                 });
             modelBuilder.Entity<Product>().HasData(
-    new Product
-    {
-        Id = 5,
-        Name = "MuradMovie",
-        Price = 51,
-        ImgPath = "~/img/pulp_fict.jpg",
-        Note = "Description",
-        CreateDate = DateTime.Now,
-        CreateUserId = 1
-    });
+                new Product
+                {
+                    Id = 5,
+                    Name = "MuradMovie",
+                    Price = 51,
+                    ImgPath = "~/img/pulp_fict.jpg",
+                    Note = "Description",
+                    CreateDate = DateTime.Now,
+                    CreateUserId = 1
+                });
 
             modelBuilder.Entity<Product>().HasData(
                 new Product

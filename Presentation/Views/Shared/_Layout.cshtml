@@ -1,4 +1,6 @@
 ﻿@using System.Globalization
+@using System.Security.Claims
+@using Helper.Constants
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -32,10 +34,13 @@
                         </li>
                     </ul>
                     <p class="text-light mx-3 my-1">
-                        Welcome @CultureInfo.CurrentCulture.TextInfo.ToTitleCase(Context.User.FindFirst(x=>x.Type=="Username")?.Value)
+                        Welcome @CultureInfo.CurrentCulture.TextInfo.ToTitleCase(Context?.User?.FindFirst(x=>x.Type=="Username")?.Value ?? "")
                     </p>
+
+
                     @{
-                        bool isAdmin = Context.User.IsInRole("Admin");                       
+                        bool isAdmin = Context.User.IsInRole(RoleKeywords.AdminRole);
+                      
                         <a style="display:@((isAdmin)? "block" :"none")" class="nav-link text-light btn btn-primary btn-p-8-16 mx-2" 
                         asp-controller="AdminProduct" asp-action="GetAll">Admin panel</a>
                     }

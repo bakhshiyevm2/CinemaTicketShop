@@ -91,7 +91,7 @@ namespace DataAccess.Migrations
                         new
                         {
                             Id = 1,
-                            CreateDate = new DateTime(2022, 10, 27, 18, 6, 34, 925, DateTimeKind.Local).AddTicks(856),
+                            CreateDate = new DateTime(2022, 10, 29, 20, 27, 12, 693, DateTimeKind.Local).AddTicks(4767),
                             CreateUserId = 1,
                             ImgPath = "~/img/pulp_fict.jpg",
                             Name = "Movie",
@@ -101,7 +101,7 @@ namespace DataAccess.Migrations
                         new
                         {
                             Id = 2,
-                            CreateDate = new DateTime(2022, 10, 27, 18, 6, 34, 925, DateTimeKind.Local).AddTicks(873),
+                            CreateDate = new DateTime(2022, 10, 29, 20, 27, 12, 693, DateTimeKind.Local).AddTicks(4794),
                             CreateUserId = 1,
                             ImgPath = "~/img/pulp_fict.jpg",
                             Name = "Test",
@@ -111,7 +111,7 @@ namespace DataAccess.Migrations
                         new
                         {
                             Id = 3,
-                            CreateDate = new DateTime(2022, 10, 27, 18, 6, 34, 925, DateTimeKind.Local).AddTicks(886),
+                            CreateDate = new DateTime(2022, 10, 29, 20, 27, 12, 693, DateTimeKind.Local).AddTicks(4807),
                             CreateUserId = 1,
                             ImgPath = "~/img/pulp_fict.jpg",
                             Name = "123123",
@@ -121,7 +121,7 @@ namespace DataAccess.Migrations
                         new
                         {
                             Id = 4,
-                            CreateDate = new DateTime(2022, 10, 27, 18, 6, 34, 925, DateTimeKind.Local).AddTicks(898),
+                            CreateDate = new DateTime(2022, 10, 29, 20, 27, 12, 693, DateTimeKind.Local).AddTicks(4821),
                             CreateUserId = 1,
                             ImgPath = "~/img/pulp_fict.jpg",
                             Name = "Testmurad",
@@ -131,7 +131,7 @@ namespace DataAccess.Migrations
                         new
                         {
                             Id = 5,
-                            CreateDate = new DateTime(2022, 10, 27, 18, 6, 34, 925, DateTimeKind.Local).AddTicks(912),
+                            CreateDate = new DateTime(2022, 10, 29, 20, 27, 12, 693, DateTimeKind.Local).AddTicks(4834),
                             CreateUserId = 1,
                             ImgPath = "~/img/pulp_fict.jpg",
                             Name = "MuradMovie",
@@ -141,7 +141,7 @@ namespace DataAccess.Migrations
                         new
                         {
                             Id = 6,
-                            CreateDate = new DateTime(2022, 10, 27, 18, 6, 34, 925, DateTimeKind.Local).AddTicks(933),
+                            CreateDate = new DateTime(2022, 10, 29, 20, 27, 12, 693, DateTimeKind.Local).AddTicks(4855),
                             CreateUserId = 1,
                             ImgPath = "~/img/pulp_fict.jpg",
                             Name = "Test 2",
@@ -182,14 +182,14 @@ namespace DataAccess.Migrations
                         new
                         {
                             Id = 1,
-                            CreateDate = new DateTime(2022, 10, 27, 18, 6, 34, 924, DateTimeKind.Local).AddTicks(9041),
+                            CreateDate = new DateTime(2022, 10, 29, 20, 27, 12, 693, DateTimeKind.Local).AddTicks(3079),
                             CreateUserId = 1,
                             Name = "Admin"
                         },
                         new
                         {
                             Id = 2,
-                            CreateDate = new DateTime(2022, 10, 27, 18, 6, 34, 924, DateTimeKind.Local).AddTicks(9105),
+                            CreateDate = new DateTime(2022, 10, 29, 20, 27, 12, 693, DateTimeKind.Local).AddTicks(3163),
                             CreateUserId = 1,
                             Name = "User"
                         });
@@ -240,11 +240,11 @@ namespace DataAccess.Migrations
                         new
                         {
                             Id = 1,
-                            CreateDate = new DateTime(2022, 10, 27, 18, 6, 34, 925, DateTimeKind.Local).AddTicks(800),
+                            CreateDate = new DateTime(2022, 10, 29, 20, 27, 12, 693, DateTimeKind.Local).AddTicks(4704),
                             CreateUserId = 1,
-                            PasswordHash = "�'��Ξ���T�����fKg��[��Ѫ������",
+                            PasswordHash = ">M>Aɳ֛2���^#��s�cH]�ݠ�i�",
                             RoleId = 1,
-                            Salt = "qfOGQGQyHzGFhA==",
+                            Salt = "8QykOR/Z+vHGkA==",
                             Username = "admin"
                         });
                 });
@@ -271,7 +271,7 @@ namespace DataAccess.Migrations
             modelBuilder.Entity("DataAccess.Entites.User", b =>
                 {
                     b.HasOne("DataAccess.Entites.Role", "Role")
-                        .WithMany()
+                        .WithMany("Users")
                         .HasForeignKey("RoleId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
@@ -282,6 +282,11 @@ namespace DataAccess.Migrations
             modelBuilder.Entity("DataAccess.Entites.Product", b =>
                 {
                     b.Navigation("Cart");
+                });
+
+            modelBuilder.Entity("DataAccess.Entites.Role", b =>
+                {
+                    b.Navigation("Users");
                 });
 
             modelBuilder.Entity("DataAccess.Entites.User", b =>

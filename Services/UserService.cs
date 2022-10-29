@@ -10,6 +10,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Helper;
+using Helper.Constants;
 
 namespace Services
 {
@@ -56,7 +57,14 @@ namespace Services
         public override UserDTO Create(UserDTO model)
         {
             var res = _db.Users.Where(x => x.Username == model.Username);
-            model.RoleId = 2; //just User
+
+            var role = _db.Roles.Where(x => x.Name == RoleKeywords.UserRole)?.First();
+            model.RoleId = role.Id; //just User
+
+            //var role = _db.Roles.Where(x => x.Name == "User")?.First();
+            //model.RoleId = role.Id; //just User
+
+            //model.RoleId = 2;
 
             if (res.Any())
                 throw new Exception("Username exists!");

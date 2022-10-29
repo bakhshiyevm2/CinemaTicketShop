@@ -1,4 +1,5 @@
 ﻿using DTO;
+using Helper.Constants;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Presentation.Models;
@@ -8,7 +9,7 @@ using System.Diagnostics;
 
 namespace Presentation.Controllers
 {
-    [Authorize]
+    [Authorize(Roles = RoleKeywords.AdminRole)]
     public class AdminProductController : Controller
     {
         private readonly IProductService productService;
@@ -16,6 +17,43 @@ namespace Presentation.Controllers
         public AdminProductController(IProductService productService)
         {
             this.productService = productService;
+        }
+       
+        [HttpGet("{id}")]
+        public IActionResult Update(int id)
+        {
+            var res = productService.Get(id);
+            return View(res);
+        }
+
+        [HttpPost]
+        public IActionResult UpdateDTO(ProductDTO product)
+        {
+            if (string.IsNullOrEmpty(product.ImgPath))
+            {
+                product.ImgPath = "~/img/pulp_fict.jpg";
+            }
+            var res = productService.Update(product);
+
+            return View("Update",res);
+        }
+
+        [HttpGet]
+        public IActionResult Add()
+        { 
+            return View();
+        }
+
+        [HttpPost]
+        public IActionResult Add(ProductDTO product) 
+        {
+            if (string.IsNullOrEmpty(product.ImgPath)) 
+            {
+                product.ImgPath = "~/img/pulp_fict.jpg";
+            }
+            productService.Create(product);
+
+            return View();
         }
 
         [HttpGet]

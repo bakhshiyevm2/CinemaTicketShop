@@ -15,6 +15,11 @@
     </div>
 
     <div class="row justify-content-md-center mx-auto">
+    <a class="text-decoration-none" asp-controller="AdminProduct" asp-action="Add">Add new</a>
+    </div>
+
+
+    <div class="row justify-content-md-center mx-auto">
         <form method="get">
             <div class="form-inline form-group justify-content-center" >
                 <label class="control-label">Search </label>
@@ -49,6 +54,12 @@
                                 </div>
                                 </div>
                             </a>
+
+                        <a asp-action="Update" asp-route-id=@item.Id style="width:250px" class="btn btn-outline-success">
+                            <i class="fa fa-shopping-cart" aria-hidden="true"></i>
+                            Update
+                        </a>
+
                         </div>
         }
        

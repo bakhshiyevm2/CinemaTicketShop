@@ -5,7 +5,8 @@ using System.Diagnostics;
 
 namespace Presentation.Controllers
 {
- 
+
+    [Authorize]
     public class HomeController : Controller
     {
         private readonly ILogger<HomeController> _logger;
@@ -17,6 +18,10 @@ namespace Presentation.Controllers
 
         public IActionResult Index()
         {
+
+            int x = 4;
+
+            x.GetType();
             return View();
         }
 

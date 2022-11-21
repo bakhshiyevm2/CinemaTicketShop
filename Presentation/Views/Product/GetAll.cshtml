@@ -1,4 +1,5 @@
 ﻿@using DTO
+@using Helper.Constants
 @model PagedResponseDTO<ProductDTO>
 
     <div class="row justify-content-md-center mt-3">
@@ -13,6 +14,8 @@
             </ul>
         </div>
     </div>
+
+
 
     <div class="row justify-content-md-center mx-auto">
         <form method="get">
@@ -29,6 +32,16 @@
             </div>
         </form>
     </div>
+
+
+
+
+@{
+    bool isAdmin = Context.User.IsInRole(RoleKeywords.AdminRole);
+
+    <a style="display:@((isAdmin)? "block" :"none")" class="nav-link text-light btn btn-primary btn-p-8-16 mx-2"
+   asp-controller="AdminProduct" asp-action="GetAll">ADD NEW</a>
+}
 
 
 <div class="row">

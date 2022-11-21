@@ -44,7 +44,7 @@ builder.Services.AddAuthentication(CookieAuthenticationDefaults.AuthenticationSc
 		opt.LoginPath = "/Login/SignIn";
 		opt.Cookie.HttpOnly = true;
 		opt.Cookie.Name = "AuthCookie";
-		opt.Cookie.MaxAge = TimeSpan.FromHours(1);
+		//opt.Cookie.MaxAge = TimeSpan.FromHours(1);
 
 		////for api
 		//opt.Events = new CookieAuthenticationEvents
@@ -78,6 +78,6 @@ app.UseAuthorization();
 
 app.MapControllerRoute(
     name: "default",
-    pattern: "{controller=Login}/{action=SignIn}/{id?}");
+    pattern: "{controller=Home}/{action=Index}/{id?}");
 
 app.Run();

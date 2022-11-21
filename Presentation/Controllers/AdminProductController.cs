@@ -51,6 +51,7 @@ namespace Presentation.Controllers
             {
                 product.ImgPath = "~/img/pulp_fict.jpg";
             }
+            
             productService.Create(product);
 
             return View();
